@@ -17,9 +17,6 @@ public class Author {
     private Long id;
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
-    private Set<Course> courses = new HashSet<>();
-
     public Long getId() {
         return id;
     }
@@ -34,13 +31,5 @@ public class Author {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Set<Course> getCourses() {
-        return courses;
-    }
-
-    public void setCourses(Set<Course> courses) {
-        this.courses = courses;
     }
 }
