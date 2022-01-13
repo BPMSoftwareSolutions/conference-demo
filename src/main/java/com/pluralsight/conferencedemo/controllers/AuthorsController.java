@@ -26,10 +26,4 @@ public class AuthorsController {
     public Author get(@PathVariable Long id) {
         return authorRepository.getById(id);
     }
-
-    @GetMapping
-    @RequestMapping("courses/{id}")
-    public Set<Course> getCoursesByAuthor(@PathVariable Long id) {
-        return authorRepository.getById(id).getCourses();
-    }
 }
