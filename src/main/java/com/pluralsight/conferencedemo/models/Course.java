@@ -16,9 +16,13 @@ public class Course {
     private String slug;
 
 //    @Column(nullable = false, insertable = false, updatable = false)
-    @Column(name = "authorid", nullable = false)
+    @Column(name = "authorid", nullable = false, insertable = false, updatable = false)
     private Long authorId;
     private String category;
+
+    @ManyToOne
+    @JoinColumn(name = "authorid")
+    private Author author;
 
     public Long getId() {
         return id;

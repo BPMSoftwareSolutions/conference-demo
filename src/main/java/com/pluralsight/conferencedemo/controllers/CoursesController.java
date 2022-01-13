@@ -2,12 +2,13 @@ package com.pluralsight.conferencedemo.controllers;
 
 import com.pluralsight.conferencedemo.models.Author;
 import com.pluralsight.conferencedemo.models.Course;
-import com.pluralsight.conferencedemo.models.Course;
 import com.pluralsight.conferencedemo.repositories.AuthorRepository;
 import com.pluralsight.conferencedemo.repositories.CourseRepository;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -23,22 +24,4 @@ public class CoursesController {
     @GetMapping
     @RequestMapping("{id}")
     public Course get(@PathVariable Long id) { return courseRepository.getById(id); }
-
-    @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED)
-    public Course create(@RequestBody final Course course) {
-        return courseRepository.saveAndFlush(course);
-    }
-
-    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable Long id) {
-        courseRepository.deleteById(id);
-    }
-
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    public Course update(@PathVariable Long id, @RequestBody Course course) {
-        Course existingCourse = courseRepository.getById(id);
-        BeanUtils.copyProperties(course, existingCourse, "course_id");
-        return courseRepository.saveAndFlush(existingCourse);
-    }
 }
